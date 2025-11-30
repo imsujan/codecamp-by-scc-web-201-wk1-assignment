@@ -22,7 +22,9 @@
 
 import type { RangeOp } from './types'
 import { applyToSelection, normalizeRange, sliceByRange } from './selection'
-import { toTitle, toSentence ,toKebab,toSnakeCase,toPascalCase, toCamelCase} from './helper_Functions'
+import { toTitleCase, toSentenceCase ,toKebabCase,toSnakeCase,toPascalCase, toCamelCase
+  , removePunctuation,__sortWordsAZ, __uniqueWords
+} from './helper_Functions'
 
 // ============================================================================
 // BATCH 1: Helper Functions
@@ -82,11 +84,11 @@ export const toLower: RangeOp = (input, range) => {
  * Converts selected text to Title Case
  * Example: "hello world" → "Hello World"
  */
-export const toTitleCase: RangeOp = (input, range) => {
+export const toTitle: RangeOp = (input, range) => {
   return applyToSelection(input, range, text => {
     // TODO: Implement title case
     // Hint: split by spaces, capitalize first letter of each word
-    return toTitle(text);
+    return toTitleCase(text);
   })
 }
 
@@ -94,11 +96,11 @@ export const toTitleCase: RangeOp = (input, range) => {
  * Converts selected text to Sentence case
  * Example: "hello world. ANOTHER SENTENCE." → "Hello world. Another sentence."
  */
-export const toSentenceCase: RangeOp = (input, range) => {
+export const toSentence: RangeOp = (input, range) => {
   return applyToSelection(input, range, text => {
     // TODO: Implement sentence case
     // Hint: lowercase everything, then capitalize first letter after [.!?]
-    return toSentence(text);
+    return toSentenceCase(text);
   })
 }
 
@@ -114,7 +116,7 @@ export const collapseSpaces: RangeOp = (input, range) => {
   return applyToSelection(input, range, text => {
     // TODO: Implement collapse spaces
     // Hint: replace(/\s+/g, ' ')
-    return text
+    return text.replace(/\s+/g, " ")
   })
 }
 
@@ -126,7 +128,7 @@ export const trimLines: RangeOp = (input, range) => {
   return applyToSelection(input, range, text => {
     // TODO: Implement trim lines
     // Hint: split by \n, trim each, join back
-    return text
+    return text.trim();
   })
 }
 
@@ -143,7 +145,7 @@ export const removePunct: RangeOp = (input, range) => {
     // TODO: Implement remove punctuation
     // Hint: Use Unicode property escapes: /[^\p{L}\p{N}\s]/gu
     // This keeps letters (\p{L}), numbers (\p{N}), and whitespace (\s)
-    return text
+    return removePunctuation(text);
   })
 }
 
@@ -159,7 +161,7 @@ export const sortWordsAZ: RangeOp = (input, range) => {
   return applyToSelection(input, range, text => {
     // TODO: Implement sort words
     // Hint: split by spaces, sort(), join
-    return text
+    return __sortWordsAZ(text);
   })
 }
 
@@ -171,7 +173,7 @@ export const uniqueWords: RangeOp = (input, range) => {
   return applyToSelection(input, range, text => {
     // TODO: Implement unique words
     // Hint: Use Set with lowercase comparison
-    return text
+    return __uniqueWords(text);
   })
 }
 
@@ -186,7 +188,7 @@ export const uniqueWords: RangeOp = (input, range) => {
 export const toKebabstyle: RangeOp = (input, range) => {
   return applyToSelection(input, range, text => {
     // TODO: Implement kebab-case
-    return toKebab(text);
+    return toKebabCase(text);
   })
 }
 

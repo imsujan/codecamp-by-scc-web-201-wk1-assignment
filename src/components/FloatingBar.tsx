@@ -17,12 +17,23 @@ import {
   reverseSelection,
   toUpper,
   toLower,
-  toTitleCase,
+  toTitle,
   toCamel,
   toPascal,
-  toSentenceCase,
+  toSentence,
   toSnake,
   toKebabstyle,
+  collapseSpaces,
+  trimLines,
+  removePunct,
+  sortWordsAZ,
+  uniqueWords,
+  countVowelsConsonantsSel,
+  wordCountSel,
+  charCountSel,
+  palindromeCheckSel,
+  findReplacePrompt,
+  wrapWithCodeBlock
 } from '../lib/stringOps'
 
 type FloatingBarProps = {
@@ -35,15 +46,25 @@ export default function FloatingBar({ onApplyOp: _onApplyOp }: FloatingBarProps)
   const handleReverse = () => _onApplyOp(reverseSelection, 'Reverse')
   const handleUpper = () => _onApplyOp(toUpper, 'UPPERCASE')
   const handleLower = () => _onApplyOp(toLower, 'lower')
-  const handleTitle = () => _onApplyOp(toTitleCase, 'Title')
-  const handleSentence = () => _onApplyOp(toSentenceCase, 'Sentence')
+  const handleTitle = () => _onApplyOp(toTitle, 'Title')
+  const handleSentence = () => _onApplyOp(toSentence, 'Sentence')
   const handleKebab = () => _onApplyOp(toKebabstyle, 'kebab-')
-  const handlePascal= () => _onApplyOp(toKebabstyle, 'Pascal')
-  const handleCamel = () => _onApplyOp(toKebabstyle, 'camel')
+  const handlePascal= () => _onApplyOp(toPascal, 'Pascal')
+  const handleCamel = () => _onApplyOp(toCamel, 'camel')
+  const handleSnake = () => _onApplyOp(toSnake, 'snake_')
+  const handleCollapseSpaces = () => _onApplyOp(collapseSpaces, 'Spaces-')
+  const handleTrimLines = () => _onApplyOp(trimLines, 'TrimLines')
+  const handleRemovePunct = () => _onApplyOp(removePunct, 'Punct-')
+  const handleSortAZ = () => _onApplyOp(sortWordsAZ, 'Sort A-Z')
+  const handleUnique = () => _onApplyOp(uniqueWords, 'Unique')
+  const handleCountVC = () => _onApplyOp(countVowelsConsonantsSel, 'V/C Count')
+  const handleWordCount = () => _onApplyOp(wordCountSel, 'Words#')
+  const handleCharCount = () => _onApplyOp(charCountSel, 'Chars#')
+  const handlePalindromeCheck = () => _onApplyOp(palindromeCheckSel, 'Palindrome?')
+  const handleFindReplace = () => _onApplyOp(findReplacePrompt, 'Find/Replace')
+  const handleWrapCodeBlock = () => _onApplyOp(wrapWithCodeBlock, 'Wrap ```')
 
 
-  
-  
   const handleOp = (opName: string) => {
     // TODO: Replace this with actual operation calls
     // For now, this is a placeholder
@@ -71,6 +92,45 @@ export default function FloatingBar({ onApplyOp: _onApplyOp }: FloatingBarProps)
     }
     else if (opName == 'camel'){
       handleCamel();
+    }
+    else if (opName == 'snake_'){
+      handleSnake();
+    }
+    else if (opName == 'Spaces-'){
+      handleCollapseSpaces();
+    }
+    else if (opName == 'TrimLines'){
+      handleTrimLines();
+    }
+    else if (opName == 'Punct-'){
+      handleRemovePunct();
+    }
+    else if (opName == 'Sort A-Z'){
+      handleSortAZ();
+    }
+    else if (opName == 'Unique'){
+      handleUnique();
+    }
+    else if (opName == 'V/C Count'){
+      handleCountVC();
+    }
+    else if (opName == 'Words#'){
+      handleWordCount();
+    }
+    else if (opName == 'Chars#'){
+      handleCharCount();
+    }
+    else if (opName == 'Palindrome?'){
+      handlePalindromeCheck();
+    }
+    else if (opName == 'Find/Replace'){
+      handleFindReplace();
+    }
+    else if (opName == 'Wrap ```'){
+      handleWrapCodeBlock();
+    }
+    else {
+      console.log(`Operation ${opName} not implemented yet.`)
     }
   }
 

@@ -66,7 +66,7 @@ return tokens;
 
             
 //TitleCase Function
-export function toTitle(someInput : string): string {
+export function toTitleCase(someInput : string): string {
 
     let tokenized = tokenize(someInput);
 
@@ -89,7 +89,7 @@ export function toTitle(someInput : string): string {
 
 }
 
-export function toSentence(someInput : string): string {
+export function toSentenceCase(someInput : string): string {
         
     let tokenized = tokenize(someInput.toLowerCase());
     let sentenceCase: string[] = [];
@@ -111,7 +111,7 @@ export function toSentence(someInput : string): string {
     return sentenceCase.join("");
     }
 
-export function toKebab(someinput : string) : string {
+export function toKebabCase(someinput : string) : string {
     let tokenized = tokenize(someinput.toLowerCase());
     let toKebab: string[] = [];
     
@@ -164,7 +164,7 @@ export function toPascalCase(someInput : string): string {
 }
 
 export function toCamelCase (someInput : string): string{
-    let convertToTitle = toTitle(someInput);
+    let convertToTitle = toTitleCase(someInput);
     let output = "";
 
     for (let i of convertToTitle){
@@ -175,5 +175,41 @@ export function toCamelCase (someInput : string): string{
             continue;
         }
     }
-    return output;
+    let finalOutput = output.charAt(0).toLowerCase() + output.slice(1);
+    return finalOutput;
+}
+
+export function removePunctuation (someInput : string ): string{
+    let output = "";
+
+    for (let i of someInput){
+        if (isWordChar(i) || isWordNum(i) || i === " "){
+            output = output += i;
+        }
+        else {
+            continue;
+        }
+    }
+    return output
+}
+
+export function __sortWordsAZ (someInput : string) : string {
+    let puntuationRemoved = removePunctuation(someInput);
+    let tokenized = tokenize(puntuationRemoved);
+
+    let outputList = tokenized.sort();
+
+    return outputList.join(" ");
+}
+
+export function __uniqueWords (someInput : string) : string {
+    let uniqueWords = removePunctuation(someInput);
+
+    let tokenized = tokenize(uniqueWords);
+
+    let uniqueSet = new Set(tokenized);
+
+    let output = Array.from(uniqueSet);
+
+    return output.join(" ")
 }
