@@ -13,12 +13,17 @@ import './FloatingBar.css'
 
 // TODO: Import operations as you implement them
 // Example:
-// import {
-//   reverseSelection,
-//   toUpper,
-//   toLower,
-//   // ... add more as you implement them
-// } from '../lib/stringOps'
+import {
+  reverseSelection,
+  toUpper,
+  toLower,
+  toTitleCase,
+  toCamel,
+  toPascal,
+  toSentenceCase,
+  toSnake,
+  toKebabstyle,
+} from '../lib/stringOps'
 
 type FloatingBarProps = {
   onApplyOp: (op: RangeOp, opName: string) => void
@@ -27,14 +32,46 @@ type FloatingBarProps = {
 export default function FloatingBar({ onApplyOp: _onApplyOp }: FloatingBarProps) {
   // TODO: Create handler functions that map button clicks to operations
   // Example:
-  // const handleReverse = () => _onApplyOp(reverseSelection, 'Reverse')
-  // const handleUpper = () => _onApplyOp(toUpper, 'UPPERCASE')
+  const handleReverse = () => _onApplyOp(reverseSelection, 'Reverse')
+  const handleUpper = () => _onApplyOp(toUpper, 'UPPERCASE')
+  const handleLower = () => _onApplyOp(toLower, 'lower')
+  const handleTitle = () => _onApplyOp(toTitleCase, 'Title')
+  const handleSentence = () => _onApplyOp(toSentenceCase, 'Sentence')
+  const handleKebab = () => _onApplyOp(toKebabstyle, 'kebab-')
+  const handlePascal= () => _onApplyOp(toKebabstyle, 'Pascal')
+  const handleCamel = () => _onApplyOp(toKebabstyle, 'camel')
+
+
+  
   
   const handleOp = (opName: string) => {
     // TODO: Replace this with actual operation calls
     // For now, this is a placeholder
     console.log(`TODO: Wire up ${opName} operation`)
-    alert(`TODO: Implement ${opName} operation`)
+    if (opName === "Reverse") {
+      handleReverse();
+    }
+    else if (opName === "UPPER"){
+      handleUpper();
+    }
+    else if (opName === "lower"){
+      handleLower();
+    }
+    else if (opName === "Title"){
+      handleTitle();
+    }
+    else if (opName === "Sentence"){
+      handleSentence();
+    }
+    else if ( opName === "kebab-"){
+      handleKebab();
+    }
+    else if ( opName == 'Pascal'){
+      handlePascal();
+    }
+    else if (opName == 'camel'){
+      handleCamel();
+    }
   }
 
   return (

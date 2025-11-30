@@ -22,6 +22,19 @@
 
 import type { RangeOp } from './types'
 import { applyToSelection, normalizeRange, sliceByRange } from './selection'
+import { toTitle, toSentence ,toKebab,toSnakeCase,toPascalCase, toCamelCase} from './helper_Functions'
+
+// ============================================================================
+// BATCH 1: Helper Functions
+// ============================================================================
+
+/**
+ * Reverses the selected text
+ * Example: "hello" → "olleh"
+ * 
+ * IMPORTANT: Use [...text] instead of text.split('') to handle emoji correctly
+ * Example: "Hi 👋" → "👋 iH" (not broken emoji)
+ */
 
 // ============================================================================
 // BATCH 1: Basic Case Transformations
@@ -39,7 +52,7 @@ export const reverseSelection: RangeOp = (input, range) => {
     // TODO: Implement reverse
     // Hint: Use [...text] to handle Unicode/emoji correctly
     // Then reverse() and join('')
-    return text
+    return [...text].reverse().join('');
   })
 }
 
@@ -50,7 +63,7 @@ export const reverseSelection: RangeOp = (input, range) => {
 export const toUpper: RangeOp = (input, range) => {
   return applyToSelection(input, range, text => {
     // TODO: Implement uppercase
-    return text
+    return text.toUpperCase();
   })
 }
 
@@ -61,7 +74,7 @@ export const toUpper: RangeOp = (input, range) => {
 export const toLower: RangeOp = (input, range) => {
   return applyToSelection(input, range, text => {
     // TODO: Implement lowercase
-    return text
+    return text.toLowerCase();
   })
 }
 
@@ -69,11 +82,11 @@ export const toLower: RangeOp = (input, range) => {
  * Converts selected text to Title Case
  * Example: "hello world" → "Hello World"
  */
-export const toTitle: RangeOp = (input, range) => {
+export const toTitleCase: RangeOp = (input, range) => {
   return applyToSelection(input, range, text => {
     // TODO: Implement title case
     // Hint: split by spaces, capitalize first letter of each word
-    return text
+    return toTitle(text);
   })
 }
 
@@ -85,7 +98,7 @@ export const toSentenceCase: RangeOp = (input, range) => {
   return applyToSelection(input, range, text => {
     // TODO: Implement sentence case
     // Hint: lowercase everything, then capitalize first letter after [.!?]
-    return text
+    return toSentence(text);
   })
 }
 
@@ -170,10 +183,10 @@ export const uniqueWords: RangeOp = (input, range) => {
  * Converts to kebab-case
  * Example: "Hello World" → "hello-world"
  */
-export const toKebab: RangeOp = (input, range) => {
+export const toKebabstyle: RangeOp = (input, range) => {
   return applyToSelection(input, range, text => {
     // TODO: Implement kebab-case
-    return text
+    return toKebab(text);
   })
 }
 
@@ -184,7 +197,7 @@ export const toKebab: RangeOp = (input, range) => {
 export const toSnake: RangeOp = (input, range) => {
   return applyToSelection(input, range, text => {
     // TODO: Implement snake_case
-    return text
+    return toSnakeCase(text);
   })
 }
 
@@ -195,7 +208,7 @@ export const toSnake: RangeOp = (input, range) => {
 export const toCamel: RangeOp = (input, range) => {
   return applyToSelection(input, range, text => {
     // TODO: Implement camelCase
-    return text
+    return toCamelCase(text);
   })
 }
 
@@ -206,7 +219,7 @@ export const toCamel: RangeOp = (input, range) => {
 export const toPascal: RangeOp = (input, range) => {
   return applyToSelection(input, range, text => {
     // TODO: Implement PascalCase
-    return text
+    return toPascalCase(text);
   })
 }
 
